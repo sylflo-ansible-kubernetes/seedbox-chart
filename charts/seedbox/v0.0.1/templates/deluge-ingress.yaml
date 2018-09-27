@@ -1,0 +1,17 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  creationTimestamp: null
+  labels:
+    io.kompose.service: deluge
+  name: deluge
+spec:
+  rules:
+  - host: deluge.{{ .Values.domain_name }}
+    http:
+      paths:
+      - backend:
+          serviceName: deluge
+          servicePort: 8112
+status:
+  loadBalancer: {}

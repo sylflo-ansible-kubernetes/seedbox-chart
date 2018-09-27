@@ -1,0 +1,17 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  creationTimestamp: null
+  labels:
+    io.kompose.service: jackett
+  name: jackett
+spec:
+  rules:
+  - host: jackett.{{ .Values.domain_name }}
+    http:
+      paths:
+      - backend:
+          serviceName: jackett
+          servicePort: 9117
+status:
+  loadBalancer: {}

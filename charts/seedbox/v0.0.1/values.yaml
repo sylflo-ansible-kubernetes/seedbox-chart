@@ -1,0 +1,6 @@
+domain_name: ""
+timezone: ""
+seafile_admin_email: "seafile@seafile"
+seafile_admin_password: "seafile"
+jackett_username: "jackett"
+jackett_password: "password"

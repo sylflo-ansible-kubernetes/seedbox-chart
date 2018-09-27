@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kompose.cmd: kompose convert -c
+    kompose.service.expose: deluge.{{ .Values.domain_name }}
+    kompose.version: 1.16.0 (0c01309)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: deluge
+  name: deluge
+spec:
+  ports:
+  - name: "8112"
+    port: 8112
+    targetPort: 8112
+  selector:
+    io.kompose.service: deluge
+status:
+  loadBalancer: {}

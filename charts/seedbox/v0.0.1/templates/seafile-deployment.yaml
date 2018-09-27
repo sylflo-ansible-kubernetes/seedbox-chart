@@ -1,0 +1,43 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert -c
+    kompose.service.expose: seafile.{{ .Values.domain_name }}
+    kompose.version: 1.16.0 (0c01309)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: seafile
+  name: seafile
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        io.kompose.service: seafile
+    spec:
+      containers:
+      - env:
+        - name: SEAFILE_ADMIN_EMAIL
+          value: seafile.{{ .Values.seafile_admin_email }}
+        - name: SEAFILE_ADMIN_PASSWORD
+          value: {{ .Values.seafile_admin_password }}
+        - name: SEAFILE_SERVER_HOSTNAME
+          value: seafile.{{ .Values.domain_name }}
+        image: seafileltd/seafile
+        name: seafile
+        ports:
+        - containerPort: 80
+        resources: {}
+        volumeMounts:
+        - mountPath: /shared
+          name: seafile-shared
+      restartPolicy: Always
+      volumes:
+      - name: seafile-shared
+        hostPath:
+          path: /opt/seafile/shared
+status: {}

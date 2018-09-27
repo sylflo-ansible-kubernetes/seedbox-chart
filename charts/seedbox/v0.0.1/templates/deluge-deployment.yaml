@@ -1,0 +1,63 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert -c
+    kompose.service.expose: deluge.{{ .Values.domain_name }}
+    kompose.version: 1.16.0 (0c01309)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: deluge
+  name: deluge
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        io.kompose.service: deluge
+    spec:
+      containers:
+      - env:
+        - name: PGID
+          value: "0"
+        - name: PUID
+          value: "0"
+        - name: TZ
+          value: '{{ .Values.timezone}}'
+        image: linuxserver/deluge
+        name: deluge
+        ports:
+        - containerPort: 8112
+        resources: {}
+        volumeMounts:
+        - mountPath: /config
+          name: deluge-config
+        - mountPath: /root/Downloads
+          name: deluge-data-downloads
+        - mountPath: /root/TV
+          name: deluge-data-tv
+        - mountPath: /root/Movies
+          name: deluge-data-movies
+        - mountPath: /root/Musics
+          name: deluge-data-musics
+      restartPolicy: Always
+      volumes:
+      - name: deluge-config
+        hostPath:
+          path: /opt/deluge/config
+      - name: deluge-data-downloads
+        hostPath:
+          path: /opt/deluge/data/Downloads
+      - name: deluge-data-tv
+        hostPath:
+          path: /opt/deluge/data/TV
+      - name: deluge-data-movies
+        hostPath:
+          path: /opt/deluge/data/Movies
+      - name: deluge-data-musics
+        hostPath:
+          path: /opt/deluge/data/Musics
+status: {}

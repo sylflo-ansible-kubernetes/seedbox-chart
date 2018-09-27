@@ -1,0 +1,50 @@
+categories:
+- Seedbox
+- Deluge
+- Jackett
+- Emby
+- Headphons
+- Sonarr
+- Radarr
+- Heimdall
+- Seafile
+questions:
+- variable: domain_name
+  default: ""
+  description: "The domain name of your website/server"
+  type: string
+  required: true
+  label: Domain name
+  min_length: 1
+  max_length: 63
+  valid_chars: /^[a-zA-Z0-9][a-zA-Z0-9-]{1,61}[a-zA-Z0-9]\.[a-zA-Z]{2,}$/
+- variable: timezone
+  default: "Europe/Paris"
+  description: "The timezone of your server"
+  type: string
+  required: true
+  label: Timezone
+- variable: seafile_admin_email
+  default: "seafile@seafile"
+  description: "The seafile admin email"
+  type: string
+  required: true
+  label: Timezone
+- variable: seafile_admin_password
+  default: "seafile"
+  description: "The seafile admin password"
+  type: string
+  required: true
+  label: Timezone
+- variable: jackett_username
+  default: "jackett"
+  description: "The jackett username for basic auth"
+  type: string
+  required: true
+  label: jackett username
+- variable: jackett_password
+  default: "jackett"
+  description: "The jackett password for basic auth"
+  type: string
+  required: true
+  label: jacket password

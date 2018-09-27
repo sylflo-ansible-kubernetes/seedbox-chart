@@ -1,0 +1,17 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  creationTimestamp: null
+  labels:
+    io.kompose.service: seafile
+  name: seafile
+spec:
+  rules:
+  - host: seafile.{{ .Values.domain_name }}
+    http:
+      paths:
+      - backend:
+          serviceName: seafile
+          servicePort: 80
+status:
+  loadBalancer: {}

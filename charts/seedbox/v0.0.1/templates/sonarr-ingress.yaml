@@ -1,0 +1,17 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  creationTimestamp: null
+  labels:
+    io.kompose.service: sonarr
+  name: sonarr
+spec:
+  rules:
+  - host: sonarr.{{ .Values.domain_name }}
+    http:
+      paths:
+      - backend:
+          serviceName: sonarr
+          servicePort: 8989
+status:
+  loadBalancer: {}

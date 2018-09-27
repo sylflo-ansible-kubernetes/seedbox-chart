@@ -1,0 +1,52 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert -c
+    kompose.service.expose: emby.{{ .Values.domain_name }}
+    kompose.version: 1.16.0 (0c01309)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: emby
+  name: emby
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        io.kompose.service: emby
+    spec:
+      containers:
+      - image: emby/embyserver:latest
+        name: heimdall
+        ports:
+        - containerPort: 8096
+        - containerPort: 8920
+        resources: {}
+        volumeMounts:
+        - mountPath: /config
+          name: emby-config
+        - mountPath: /downloads/TV
+          name: emby-data-tv
+        - mountPath: /downloads/Movies
+          name: emby-data-movies
+        - mountPath: /downloads/Musics
+          name: emby-data-musics
+      restartPolicy: Always
+      volumes:
+      - name: emby-config
+        hostPath:
+          path: /opt/emby/config
+      - name: emby-data-tv
+        hostPath:
+          path: /opt/deluge/data/TV
+      - name: emby-data-movies
+        hostPath:
+          path: /opt/deluge/data/Movies
+      - name: emby-data-musics
+        hostPath:
+          path: /opt/deluge/data/Musics
+status: {}

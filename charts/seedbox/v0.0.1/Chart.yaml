@@ -1,0 +1,24 @@
+name: seedbox
+description: >
+  A seedbox helm chart it will install the following software
+    - Deluge https://github.com/deluge-torrent/deluge
+    - Jackett https://github.com/Jackett/Jackett
+    - Radarr https://github.com/Radarr/Radarr
+    - Sonarr https://github.com/Sonarr/Sonarr
+    - Headphones https://github.com/rembo10/headphones
+    - Seafile https://github.com/haiwen/seafile
+    - Streama https://github.com/streamaserver/streama
+    - Heimdall https://github.com/linuxserver/Heimdall
+version: 0.0.1
+keywords:
+  - seedbox
+  - deluge
+  - jackett
+  - radarr
+  - sonarr
+  - headphones
+  - seafile
+  - streama
+  - heimdall
+sources:
+home:

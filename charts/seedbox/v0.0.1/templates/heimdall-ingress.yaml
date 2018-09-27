@@ -1,0 +1,21 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  creationTimestamp: null
+  labels:
+    io.kompose.service: heimdall
+  name: heimdall
+  annotations:
+    nginx.ingress.kubernetes.io/auth-type: basic
+    nginx.ingress.kubernetes.io/auth-secret: heimdall-basic-auth
+    nginx.ingress.kubernetes.io/auth-realm: Authentication Required
+spec:
+  rules:
+  - host: heimdall.{{ .Values.domain_name }}
+    http:
+      paths:
+      - backend:
+          serviceName: heimdall
+          servicePort: 80
+status:
+  loadBalancer: {}

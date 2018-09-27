@@ -1,0 +1,43 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert -c
+    kompose.service.expose: sonarr.{{ .Values.domain_name }}
+    kompose.version: 1.16.0 (0c01309)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: sonarr
+  name: sonarr
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        io.kompose.service: sonarr
+    spec:
+      containers:
+      - env:
+        - name: PGID
+          value: "0"
+        - name: PUID
+          value: "0"
+        - name: TZ
+          value: '{{ .Values.timezone}}'
+        image: linuxserver/sonarr
+        name: sonarr
+        ports:
+        - containerPort: 8989
+        resources: {}
+        volumeMounts:
+        - mountPath: /config
+          name: sonarr-config
+      restartPolicy: Always
+      volumes:
+      - name: sonarr-config
+        hostPath:
+          path: /opt/sonarr/config
+status: {}
