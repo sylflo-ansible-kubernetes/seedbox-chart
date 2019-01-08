@@ -3,15 +3,15 @@ kind: Ingress
 metadata:
   creationTimestamp: null
   labels:
-    io.kompose.service: emby
-  name: emby
+    io.kompose.service: plex
+  name: plex
 spec:
   rules:
-  - host: emby.{{ .Values.domain_name }}
+  - host: plex.{{ .Values.domain_name }}
     http:
       paths:
       - backend:
-          serviceName: emby
-          servicePort: 8096
+          serviceName: plex
+          servicePort: 32400
 status:
   loadBalancer: {}

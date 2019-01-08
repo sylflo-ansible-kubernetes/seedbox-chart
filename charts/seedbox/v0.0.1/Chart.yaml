@@ -7,8 +7,8 @@ description: >
     - Sonarr https://github.com/Sonarr/Sonarr
     - Headphones https://github.com/rembo10/headphones
     - Seafile https://github.com/haiwen/seafile
-    - Streama https://github.com/streamaserver/streama
     - Heimdall https://github.com/linuxserver/Heimdall
+    - Plex
 version: 0.0.1
 keywords:
   - seedbox
@@ -16,9 +16,8 @@ keywords:
   - jackett
   - radarr
   - sonarr
-  - headphones
   - seafile
-  - streama
+  - plex
   - heimdall
 sources:
 home:

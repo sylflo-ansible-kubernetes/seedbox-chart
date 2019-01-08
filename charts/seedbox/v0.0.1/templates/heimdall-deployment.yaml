@@ -38,6 +38,10 @@ spec:
       restartPolicy: Always
       volumes:
       - name: heimdall-config
-        hostPath:
-          path: /opt/headphones/config
+        flexVolume:
+          driver: ceph.rook.io/rook
+          fsType: ceph
+          options:
+            fsName: myfs
+            clusterNamespace: rook-ceph
 status: {}

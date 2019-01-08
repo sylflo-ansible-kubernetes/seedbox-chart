@@ -38,6 +38,10 @@ spec:
       restartPolicy: Always
       volumes:
       - name: radarr-config
-        hostPath:
-          path: /opt/radarr/config
+        flexVolume:
+          driver: ceph.rook.io/rook
+          fsType: ceph
+          options:
+            fsName: myfs
+            clusterNamespace: rook-ceph
 status: {}

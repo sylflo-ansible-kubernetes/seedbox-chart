@@ -3,12 +3,12 @@ kind: Deployment
 metadata:
   annotations:
     kompose.cmd: kompose convert -c
-    kompose.service.expose: deluge.{{ .Values.domain_name }}
-    kompose.version: 1.16.0 (0c01309)
+    kompose.service.expose: plex.daydreamnation.fr
+    kompose.version: 1.1.0 (36652f6)
   creationTimestamp: null
   labels:
-    io.kompose.service: deluge
-  name: deluge
+    io.kompose.service: plex
+  name: plex
 spec:
   replicas: 1
   strategy:
@@ -17,43 +17,51 @@ spec:
     metadata:
       creationTimestamp: null
       labels:
-        io.kompose.service: deluge
+        io.kompose.service: plex
     spec:
       containers:
       - env:
-        - name: PGID
-          value: "0"
-        - name: PUID
-          value: "0"
+        - name: ADVERTISE_IP
+          value: '"http://10.1.1.23:32400/"'
         - name: TZ
-          value: '{{ .Values.timezone}}'
-        image: linuxserver/deluge
-        name: deluge
+          value: Europe/Paris
+        image: plexinc/pms-docker
+        name: plex
         ports:
-        - containerPort: 8112
+        - containerPort: 32400
+        - containerPort: 3005
+        - containerPort: 8324
+        - containerPort: 32469
+        - containerPort: 1900
+          protocol: UDP
+        - containerPort: 32410
+          protocol: UDP
+        - containerPort: 32412
+          protocol: UDP
+        - containerPort: 32413
+          protocol: UDP
+        - containerPort: 32414
+          protocol: UDP
         resources: {}
         volumeMounts:
         - mountPath: /config
-          name: deluge-config
-        - mountPath: /root/Downloads
-          name: deluge-data-downloads
-        - mountPath: /root/TV
+          name: plex-config
+        - mountPath: /transcode \
+          name: plex-transcode
+        - mountPath: /data/tv
           name: deluge-data-tv
-        - mountPath: /root/Movies
+        - mountPath: /data/movies
           name: deluge-data-movies
-        - mountPath: /root/Musics
-          name: deluge-data-musics
       restartPolicy: Always
-
       volumes:
-      - name: deluge-config
+      - name: plex-config
         flexVolume:
           driver: ceph.rook.io/rook
           fsType: ceph
           options:
             fsName: myfs
             clusterNamespace: rook-ceph
-      - name: deluge-data-downloads
+      - name: plex-transcode
         flexVolume:
           driver: ceph.rook.io/rook
           fsType: ceph
@@ -68,13 +76,6 @@ spec:
             fsName: myfs
             clusterNamespace: rook-ceph
       - name: deluge-data-movies
-        flexVolume:
-          driver: ceph.rook.io/rook
-          fsType: ceph
-          options:
-            fsName: myfs
-            clusterNamespace: rook-ceph
-      - name: deluge-data-musics
         flexVolume:
           driver: ceph.rook.io/rook
           fsType: ceph
