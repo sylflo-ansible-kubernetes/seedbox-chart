@@ -44,4 +44,5 @@ spec:
           options:
             fsName: myfs
             clusterNamespace: rook-ceph
+            path: /seedbox/jackett/config
 status: {}

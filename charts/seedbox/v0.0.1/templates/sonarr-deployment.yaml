@@ -44,5 +44,5 @@ spec:
           options:
             fsName: myfs
             clusterNamespace: rook-ceph
-            path: /sonarr/config
+            path: /seedbox/sonarr/config
 status: {}

@@ -32,16 +32,17 @@ spec:
         ports:
         - containerPort: 7878
         resources: {}
-        # volumeMounts:
-        # - mountPath: /config
-        #   name: radarr-config
+        volumeMounts:
+        - mountPath: /config
+          name: radarr-config
       restartPolicy: Always
-      # volumes:
-      # - name: radarr-config
-      #   flexVolume:
-      #     driver: ceph.rook.io/rook
-      #     fsType: ceph
-      #     options:
-      #       fsName: myfs
-      #       clusterNamespace: rook-ceph
+      volumes:
+      - name: radarr-config
+        flexVolume:
+          driver: ceph.rook.io/rook
+          fsType: ceph
+          options:
+            fsName: myfs
+            clusterNamespace: rook-ceph
+            path: /seedbox/radarr/config
 status: {}

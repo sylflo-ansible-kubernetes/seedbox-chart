@@ -38,6 +38,11 @@ spec:
       restartPolicy: Always
       volumes:
       - name: seafile-shared
-        hostPath:
-          path: /opt/seafile/shared
+        flexVolume:
+          driver: ceph.rook.io/rook
+          fsType: ceph
+          options:
+            fsName: myfs
+            clusterNamespace: rook-ceph
+            path: /seedbox/seafile/shared
 status: {}
