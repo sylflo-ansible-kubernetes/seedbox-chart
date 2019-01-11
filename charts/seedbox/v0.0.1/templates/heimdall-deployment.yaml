@@ -4,7 +4,7 @@ metadata:
   annotations:
     kompose.cmd: kompose convert -c
     kompose.service.expose: heimdall.{{ .Values.domain_name }}
-    kompose.version: 1.16.0 (0c01309)
+    kompose.version: 1.1.0 (36652f6)
   creationTimestamp: null
   labels:
     io.kompose.service: heimdall
@@ -26,7 +26,7 @@ spec:
         - name: PUID
           value: "1000"
         - name: TZ
-          value: '{{ .Values.timezone}}'
+          value: '{{ .Values.timezone }}'
         image: linuxserver/heimdall
         name: heimdall
         ports:

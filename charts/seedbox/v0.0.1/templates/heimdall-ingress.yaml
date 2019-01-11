@@ -5,10 +5,6 @@ metadata:
   labels:
     io.kompose.service: heimdall
   name: heimdall
-  annotations:
-    nginx.ingress.kubernetes.io/auth-type: basic
-    nginx.ingress.kubernetes.io/auth-secret: heimdall-basic-auth
-    nginx.ingress.kubernetes.io/auth-realm: Authentication Required
 spec:
   rules:
   - host: heimdall.{{ .Values.domain_name }}
