@@ -1,6 +1,10 @@
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
+  annotations:
+    nginx.ingress.kubernetes.io/auth-type: basic
+    nginx.ingress.kubernetes.io/auth-secret: netdata-basic-auth
+    nginx.ingress.kubernetes.io/auth-realm: "Netdata Authentication Required - netdata"
   creationTimestamp: null
   labels:
     io.kompose.service: netdata
