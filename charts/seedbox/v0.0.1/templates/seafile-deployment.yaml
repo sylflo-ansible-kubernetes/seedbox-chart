@@ -22,7 +22,7 @@ spec:
       containers:
       - env:
         - name: SEAFILE_ADMIN_EMAIL
-          value: seafile.{{ .Values.seafile_admin_email }}
+          value: <{{ .Values.seafile_admin_email }}
         - name: SEAFILE_ADMIN_PASSWORD
           value: {{ .Values.seafile_admin_password }}
         - name: SEAFILE_SERVER_HOSTNAME
