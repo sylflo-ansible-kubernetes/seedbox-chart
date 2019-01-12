@@ -2,9 +2,9 @@ apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   annotations:
-    ingress.kubernetes.io/auth-type: basic
-    ingress.kubernetes.io/auth-secret: myingressauthsecret
-    ingress.kubernetes.io/auth-realm: "Authentication Required - foo"
+    nginx.ingress.kubernetes.io/auth-type: basic
+    nginx.ingress.kubernetes.io/auth-secret: basic-auth
+    nginx.ingress.kubernetes.io/auth-realm: "Kibana Authentication Required - kibanaadmin"
   creationTimestamp: null
   labels:
     io.kompose.service: heimdall
