@@ -1,0 +1,17 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  creationTimestamp: null
+  labels:
+    io.kompose.service: netdata
+  name: netdata
+spec:
+  rules:
+  - host: netdata.{{ .Values.domain_name }}
+    http:
+      paths:
+      - backend:
+          serviceName: netdata
+          servicePort: 19999
+status:
+  loadBalancer: {}
