@@ -49,7 +49,7 @@ questions:
   label: jacket password
 - variable: heimdall_basic_auth
   default: ""
-  description: "htpasswd -c auth kibanaadmin && cat auth | base64 and copy paste the result"
+  description: "htpasswd -c auth heimdall && cat auth | base64 and copy paste the result"
   type: string
   required: true
   label: heimdall_basic_auth

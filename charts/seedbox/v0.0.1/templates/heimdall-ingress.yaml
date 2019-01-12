@@ -4,7 +4,7 @@ metadata:
   annotations:
     nginx.ingress.kubernetes.io/auth-type: basic
     nginx.ingress.kubernetes.io/auth-secret: basic-auth
-    nginx.ingress.kubernetes.io/auth-realm: "Kibana Authentication Required - kibanaadmin"
+    nginx.ingress.kubernetes.io/auth-realm: "Heimdall Authentication Required - heimdall"
   creationTimestamp: null
   labels:
     io.kompose.service: heimdall
