@@ -1,6 +1,10 @@
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
+  annotations:
+    ingress.kubernetes.io/auth-type: basic
+    ingress.kubernetes.io/auth-secret: myingressauthsecret
+    ingress.kubernetes.io/auth-realm: "Authentication Required - foo"
   creationTimestamp: null
   labels:
     io.kompose.service: heimdall
