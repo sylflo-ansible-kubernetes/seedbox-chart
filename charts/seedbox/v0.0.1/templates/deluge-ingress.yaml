@@ -1,6 +1,10 @@
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
+  annotations:
+    kubernetes.io/tls-acme: "true"
+    certmanager.k8s.io/cluster-issuer: letsencrypt-staging
+    nginx.ingress.kubernetes.io/secure-backends: "true"
   creationTimestamp: null
   labels:
     io.kompose.service: deluge
@@ -13,5 +17,9 @@ spec:
       - backend:
           serviceName: deluge
           servicePort: 8112
+  tls:
+  - hosts:
+    - deluge.{{ .Values.domain_name }}
+    secretName: deluge-crt
 status:
   loadBalancer: {}
