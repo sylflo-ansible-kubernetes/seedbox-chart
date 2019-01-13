@@ -1,6 +1,10 @@
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
+  annotations:
+    kubernetes.io/tls-acme: "true"
+    certmanager.k8s.io/cluster-issuer: letsencrypt-staging
+    nginx.ingress.kubernetes.io/secure-backends: "true"
   creationTimestamp: null
   labels:
     io.kompose.service: heimdall
@@ -13,5 +17,9 @@ spec:
       - backend:
           serviceName: heimdall
           servicePort: 80
+  tls:
+  - hosts:
+    - heimdall.{{ .Values.domain_name }}
+    secretName: heimdall-crt
 status:
   loadBalancer: {}
