@@ -1,6 +1,9 @@
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
+  annotations:
+    kubernetes.io/tls-acme: "true"
+    certmanager.k8s.io/cluster-issuer: {{ .Values.clusterissuer }}
   creationTimestamp: null
   labels:
     io.kompose.service: sonarr
@@ -13,5 +16,9 @@ spec:
       - backend:
           serviceName: sonarr
           servicePort: 8989
+  tls:
+  - hosts:
+    - sonarr.{{ .Values.domain_name }}
+    secretName: sonarr-crt
 status:
   loadBalancer: {}

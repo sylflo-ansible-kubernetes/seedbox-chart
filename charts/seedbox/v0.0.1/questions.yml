@@ -53,3 +53,9 @@ questions:
   type: string
   required: true
   label: netdata_basic_auth
+- variable: clusterissuer
+  default: "letsencrypt-staging"
+  description: "The cluster Issuer name"
+  type: string
+  required: true
+  label: Cluster issuer

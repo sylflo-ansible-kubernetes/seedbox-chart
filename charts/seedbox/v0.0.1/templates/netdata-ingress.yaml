@@ -5,6 +5,8 @@ metadata:
     nginx.ingress.kubernetes.io/auth-type: basic
     nginx.ingress.kubernetes.io/auth-secret: netdata-basic-auth
     nginx.ingress.kubernetes.io/auth-realm: "Netdata Authentication Required - netdata"
+    kubernetes.io/tls-acme: "true"
+    certmanager.k8s.io/cluster-issuer: {{ .Values.clusterissuer }}
   creationTimestamp: null
   labels:
     io.kompose.service: netdata
@@ -17,5 +19,9 @@ spec:
       - backend:
           serviceName: netdata
           servicePort: 19999
+  tls:
+  - hosts:
+    - netdata.{{ .Values.domain_name }}
+    secretName: netdata-crt
 status:
   loadBalancer: {}

@@ -2,6 +2,9 @@ apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   annotations:
+    annotations:
+    kubernetes.io/tls-acme: "true"
+    certmanager.k8s.io/cluster-issuer: {{ .Values.clusterissuer }}
     nginx.ingress.kubernetes.io/proxy-body-size: 500m
   creationTimestamp: null
   labels:
@@ -15,5 +18,9 @@ spec:
       - backend:
           serviceName: seafile
           servicePort: 80
+  tls:
+  - hosts:
+    - seafile.{{ .Values.domain_name }}
+    secretName: seafile-crt
 status:
   loadBalancer: {}

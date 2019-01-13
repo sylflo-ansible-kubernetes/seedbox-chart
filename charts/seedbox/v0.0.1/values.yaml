@@ -5,3 +5,4 @@ seafile_admin_password: "seafile"
 jackett_username: "jackett"
 jackett_password: "password"
 netdata_basic_auth: ""
+clusterissuer: letsencrypt-staging

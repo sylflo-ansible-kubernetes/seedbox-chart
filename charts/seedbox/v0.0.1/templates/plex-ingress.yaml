@@ -1,6 +1,9 @@
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
+  annotations:
+    kubernetes.io/tls-acme: "true"
+    certmanager.k8s.io/cluster-issuer: {{ .Values.clusterissuer }}
   creationTimestamp: null
   labels:
     io.kompose.service: plex
@@ -13,5 +16,9 @@ spec:
       - backend:
           serviceName: plex
           servicePort: 32400
+  tls:
+  - hosts:
+    - plex.{{ .Values.domain_name }}
+    secretName: plex-crt
 status:
   loadBalancer: {}

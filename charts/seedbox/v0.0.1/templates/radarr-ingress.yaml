@@ -1,6 +1,9 @@
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
+  annotations:
+    kubernetes.io/tls-acme: "true"
+    certmanager.k8s.io/cluster-issuer: {{ .Values.clusterissuer }}
   creationTimestamp: null
   labels:
     io.kompose.service: radarr
@@ -13,5 +16,9 @@ spec:
       - backend:
           serviceName: radarr
           servicePort: 7878
+  tls:
+  - hosts:
+    - radarr.{{ .Values.domain_name }}
+    secretName: radarr-crt
 status:
   loadBalancer: {}
