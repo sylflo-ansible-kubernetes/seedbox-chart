@@ -1,6 +1,9 @@
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
+  annotations:
+    kubernetes.io/tls-acme: "true"
+    certmanager.k8s.io/cluster-issuer: letsencrypt-staging
   creationTimestamp: null
   labels:
     io.kompose.service: jackett
@@ -13,5 +16,9 @@ spec:
       - backend:
           serviceName: jackett
           servicePort: 9117
+  tls:
+  - hosts:
+    - jackett.{{ .Values.domain_name }}
+    secretName: jackett-crt
 status:
   loadBalancer: {}
