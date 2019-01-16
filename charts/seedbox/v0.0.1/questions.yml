@@ -35,18 +35,6 @@ questions:
   type: string
   required: true
   label: Timezone
-- variable: jackett_username
-  default: "jackett"
-  description: "The jackett username for basic auth"
-  type: string
-  required: true
-  label: jackett username
-- variable: jackett_password
-  default: "jackett"
-  description: "The jackett password for basic auth"
-  type: string
-  required: true
-  label: jacket password
 - variable: netdata_basic_auth
   default: ""
   description: "htpasswd -c auth netdata && cat auth | base64 and copy paste the result"
