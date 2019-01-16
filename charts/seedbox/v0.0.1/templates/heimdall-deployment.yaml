@@ -35,7 +35,7 @@ spec:
         volumeMounts:
         - mountPath: /config
           name: heimdall-config
-        - mountPath: /var/www/localhost/heimdall/.env
+        - mountPath: /var/www/localhost/heimdall
           name: heimdall-env
       restartPolicy: Always
       volumes:
@@ -54,5 +54,5 @@ spec:
           options:
             fsName: myfs
             clusterNamespace: rook-ceph
-            path: /seedbox/heimdall/var/www/localhost/heimdall/.env
+            path: /seedbox/heimdall/var/www/localhost/heimdall
 status: {}
