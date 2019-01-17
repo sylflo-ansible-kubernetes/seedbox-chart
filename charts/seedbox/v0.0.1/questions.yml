@@ -36,7 +36,7 @@ questions:
   required: true
   label: Timezone
 - variable: netdata_basic_auth
-  default: ""
+  default: "bmV0ZGF0YTokYXByMSRBRS5zNVo4UyRxU0d4UGV3YnFSMXI1REpTT3BXa3gvCg=="
   description: "htpasswd -c auth netdata && cat auth | base64 and copy paste the result"
   type: string
   required: true
