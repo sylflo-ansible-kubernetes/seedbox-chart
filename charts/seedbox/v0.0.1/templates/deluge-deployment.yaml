@@ -55,35 +55,15 @@ spec:
             clusterNamespace: rook-ceph
             path: /seedbox/deluge/config
       - name: deluge-data-downloads
-        flexVolume:
-          driver: ceph.rook.io/rook
-          fsType: ceph
-          options:
-            fsName: myfs
-            clusterNamespace: rook-ceph
-            path: /seedbox/deluge/data/Downloads
+        hostPath:
+          path: /opt/deluge/data/Downloads
       - name: deluge-data-tv
-        flexVolume:
-          driver: ceph.rook.io/rook
-          fsType: ceph
-          options:
-            fsName: myfs
-            clusterNamespace: rook-ceph
-            path: /seedbox/deluge/data/TV
+        hostPath:
+          path: /opt/deluge/data/TV
       - name: deluge-data-movies
-        flexVolume:
-          driver: ceph.rook.io/rook
-          fsType: ceph
-          options:
-            fsName: myfs
-            clusterNamespace: rook-ceph
-            path: /seedbox/deluge/data/Movies
+        hostPath:
+          path: /opt/deluge/data/Movies
       - name: deluge-data-musics
-        flexVolume:
-          driver: ceph.rook.io/rook
-          fsType: ceph
-          options:
-            fsName: myfs
-            clusterNamespace: rook-ceph
-            path: /seedbox/deluge/data/Musics
+        hostPath:
+          path: /opt/deluge/data/Musics
 status: {}

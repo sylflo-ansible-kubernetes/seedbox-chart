@@ -71,19 +71,9 @@ spec:
             clusterNamespace: rook-ceph
             path: /seedbox/plex/transcode
       - name: deluge-data-tv
-        flexVolume:
-          driver: ceph.rook.io/rook
-          fsType: ceph
-          options:
-            fsName: myfs
-            clusterNamespace: rook-ceph
-            path: /seedbox/deluge/data/TV
+        hostPath:
+          path: /opt/deluge/data/TV
       - name: deluge-data-movies
-        flexVolume:
-          driver: ceph.rook.io/rook
-          fsType: ceph
-          options:
-            fsName: myfs
-            clusterNamespace: rook-ceph
-            path: /seedbox/deluge/data/Movies
+        hostPath:
+          path: /opt/deluge/data/Movies
 status: {}
